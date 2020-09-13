@@ -71,7 +71,7 @@ $ python simple_check.py
 
 [[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0)
 
-(Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1WL1WxFeRtwOh3HevPqeuTw), 提取码: xuia)
+(Chinese researchers: [[北航网盘]](https://bhpan.buaa.edu.cn:443/link/1B7824A57299DA36B89FC4D3BC90EF7A))
 
 > MFQEv2 dataset includes 108 lossless YUV sequences for training, and 18 test sequences recommended by ITU-T.
 
