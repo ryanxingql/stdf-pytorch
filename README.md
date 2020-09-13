@@ -17,8 +17,8 @@
 
 PyTorch implementation of [Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
 
-- A simple yet effective video quality enhancement network.
-- Adopt feature alignment by multi-frame deformable convolutions, instead of motion estimation and motion compensation.
+- A **simple** yet **effective** video quality enhancement network.
+- Adopt **feature alignment** by multi-frame **deformable convolutions**, instead of motion estimation and motion compensation.
 
 **Notice**: The dataset and training method are different from those in the original paper.
 
