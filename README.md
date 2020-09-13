@@ -141,27 +141,27 @@ Similar to that in the original paper.
 
 ## 5. Q&A
 
-> How to compress YUV videos?
+> How to compress YUV sequences?
 
 <span id="compress"></span>
 
-We also provide video compression tools in the MFQEv2 dataset links.
+We have provided the video compression toolbox in the MFQEv2 dataset link.
 
 Take 18 test sequences as examples.
 
 1. Unzip the `test_18.zip` into `test_18/raw` folder. It contains 18 raw videos.
-2. Generate video config files: `python main_generate_video_cfg.py`. Args:
-   - [line 6] `ubuntu` or `windows`
-3. Generate `.bat` or `.sh` files: `python main_generate_bat.py`. Args:
-   - [line 7] QPs to be encoded, e.g., `[22,27,32,37,42]`
-   - [line 8] Num of bat files in parallel
-   - [line 9] `ubuntu` or `windows`
-   - [line 10] `test` or `train`
-4. Run all `.bat` or `.sh` in `video_compression/bat/test_18`.
+2. Generate video config files by running `python main_generate_video_cfg.py`. Args:
+   - `system`(line 6): (`ubuntu` | `windows`)
+3. Generate `.bat` or `.sh` files by running `python main_generate_bat.py`. Args:
+   - `QP_list` (line 7): QPs to be encoded, e.g., `[37]`, `[22,27,32,37,42]`.
+   - `num_bat` (line 8): num of bat files. You can run them in parallel.
+   - `system` (line 9): (`ubuntu` | `windows`)
+   - `video_type` (line 10): (`test` | `train`)
+4. Run all `.bat` or `.sh` in `video_compression/bat/test_18`. Note that on Ubuntu system, first `$ chmod +x TAppEncoderStatic`.
 
-Note: On Ubuntu system, first `$ chmod +x TAppEncoderStatic`.
+The same applies to 108 training sequences.
 
-> How we enlarge the dataset?
+> How do we enlarge the dataset?
 
 Following BasicSR, we set `sampling index = target index % dataset len`.
 
@@ -169,7 +169,7 @@ For example, if we have a dataset which volume is 4 and enlargement ratio is 2, 
 
 Besides, the data loader will be shuffled at the start of each epoch. Enlarging epoch can help reduce the total starting times.
 
-> Why we set the number of iteration not epoch?
+> Why do we set the number of iteration but not epoch?
 
 Considering that we can enlarge the dataset with various ratio, the number of epoch is meaningless. In the meanwhile, the number of iteration indicates the number of sampling batches, which is more meaningful to us.
 
