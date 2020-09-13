@@ -82,7 +82,7 @@ $ python simple_check.py
 
 [[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0)
 
-(Chinese researchers: [[百度网盘]]((https://pan.baidu.com/s/1WL1WxFeRtwOh3HevPqeuTw)), 提取码: xuia)
+(Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1WL1WxFeRtwOh3HevPqeuTw), 提取码: xuia)
 
 > MFQEv2 dataset includes 108 lossless YUV sequences for training, and 18 test sequences recommended by ITU-T.
 
@@ -94,12 +94,12 @@ Take 18 test sequences as examples.
 
 1. Unzip the `test_18.zip` into `test_18/raw` folder. It contains 18 raw videos.
 2. Generate video config files: `python main_generate_video_cfg.py`. Args:
-   - `ubuntu` or `windows` (line 6)
+   - [line 6] `ubuntu` or `windows`
 3. Generate `.bat` or `.sh` files: `python main_generate_bat.py`. Args:
-   - QPs to be encoded, e.g., `[22,27,32,37,42]` (line 7)
-   - Num of bat files in parallel (line 8)
-   - `ubuntu` or `windows` (line 9)
-   - `test` or `train` (line 10)
+   - [line 7] QPs to be encoded, e.g., `[22,27,32,37,42]`
+   - [line 8] Num of bat files in parallel
+   - [line 9] `ubuntu` or `windows`
+   - [line 10] `test` or `train`
 4. Run all `.bat` or `.sh` in `video_compression/bat/test_18`.
 
 Note: On Ubuntu system, first `$ chmod +x TAppEncoderStatic`.

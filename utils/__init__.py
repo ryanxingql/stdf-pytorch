@@ -1,35 +1,5 @@
 """Toolbox for python code.
 
-Content:
-    File IO:
-        import_yuv: 读取8bit yuv420p video.
-        FileClient
-        dict2str
-    Conversion: 
-        img2float32 / ndarray2img: float32或uint8输入, 自动判断类型
-        rgb2ycbcr / ycbcr2rgb: 输入(..., 3)图像.
-        rgb2gray / gray2rgb
-        bgr2rgb / rgb2bgr
-        paired_random_crop
-        augment
-        totensor
-    Metrics:
-        calculate_psnr
-        calculate_ssim
-        calculate_mse
-    Deep learning:
-        set_random_seed
-        run_mp_train: 运行torch.multiprocessing
-        get_dist_info
-        DistSampler
-    System:
-        mkdir
-        get_timestr
-        Timer
-    LMDB:
-        make_lmdb_from_imgs
-    Wasted
-
 To-do:
     yuv2rgb: 8 bit yuv 420p
     yuv2ycbcr: 8 bit yuv 420p
@@ -46,7 +16,7 @@ Principle:
     集成常用函数, 统一调用所需包, 统一命名格式.
     不重复造轮子! 了解原理即可.
 
-Contact: xingql@buaa.edu.cn
+Contact: ryanxingql@gmail.com
 """
 from .file_io import (import_yuv, FileClient, dict2str, CPUPrefetcher)
 from .conversion import (img2float32, ndarray2img, rgb2ycbcr, ycbcr2rgb, 
