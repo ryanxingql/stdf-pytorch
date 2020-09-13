@@ -10,7 +10,7 @@
   - [3. Test](#3-test)
   - [4. Results](#4-results)
   - [5. Q&A](#5-qa)
-  - [6. License](#6-license)
+  - [6. License & Citation](#6-license--citation)
   - [7. See more](#7-see-more)
 
 ## 0. Background
@@ -20,26 +20,16 @@ PyTorch implementation of [Spatio-Temporal Deformable Convolution for Compressed
 - A simple yet effective video quality enhancement network.
 - Adopt feature alignment by multi-frame deformable convolutions, instead of motion estimation and motion compensation.
 
-```tex
-@inproceedings{STDF,
-  title={Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement},
-  author={Deng, Jianing and Wang, Li and Pu, Shiliang and Zhuo, Cheng},
-  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
-  volume={34},
-  number={07},
-  pages={10696--10703},
-  year={2020}
-}
-```
- 
-Special thanks to:
-
-- Jianing Deng (邓家宁, the author of STDF): network structure and training details.
-- [BasicSR](https://github.com/xinntao/BasicSR): useful tools and functions.
-
-Note: The dataset and training method are different from those in the original paper.
+**Notice**: The dataset and training method are different from those in the original paper.
 
 If you have any advice or question, feel free to contact: ryanxingql@gmail.com.
+
+**To-do in Sep.**
+
+- [ ] Pre-trained models and corresponding results (similar to the original paper).
+- [ ] Fast test code that load all frames of a YUV video at one time.
+- [ ] Vimeo-90K dataset and JPEG compression tool.
+- [ ] All-in-one HEVC compression tool with multiprocessing.
 
 ## 1. Pre-request
 
@@ -73,8 +63,7 @@ $ bash build.sh
 $ python simple_check.py
 ```
 
-> - The DCNv2 source files here is different from the [open-sourced version](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
-> - If you move the repository into a new path, you must re-build DCNv2 under the new path.
+> The DCNv2 source files here is different from the [open-sourced version](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
 
 ### 1.3. Dataset (MFQEv2)
 
@@ -88,21 +77,7 @@ $ python simple_check.py
 
 **Compress both training and test sequences by HM16.5 at LDP mode, QP=37.**
 
-We also provide video compression tools in the above links.
-
-Take 18 test sequences as examples.
-
-1. Unzip the `test_18.zip` into `test_18/raw` folder. It contains 18 raw videos.
-2. Generate video config files: `python main_generate_video_cfg.py`. Args:
-   - [line 6] `ubuntu` or `windows`
-3. Generate `.bat` or `.sh` files: `python main_generate_bat.py`. Args:
-   - [line 7] QPs to be encoded, e.g., `[22,27,32,37,42]`
-   - [line 8] Num of bat files in parallel
-   - [line 9] `ubuntu` or `windows`
-   - [line 10] `test` or `train`
-4. Run all `.bat` or `.sh` in `video_compression/bat/test_18`.
-
-Note: On Ubuntu system, first `$ chmod +x TAppEncoderStatic`.
+See [Q&A: How to compress](#compress).
 
 **Place datasets as follows.**
 
@@ -122,8 +97,9 @@ MFQEv2/
 
 Suppose the folder `MFQEv2/` is placed at `/media/x/Database/MFQEv2/`, then you should assign `/media/x/Database/MFQEv2` to `dataset -> train -> root` in YAML.
 
-> - 4G means you will use 4 GPUs for training later. Similarly, you can also edit `option_R3_mfqev2_1G.yml` and `option_R3_mfqev2_2G.yml`.
-> - R3 is one of the network structures provided in the paper.
+> `R3`: one of the network structures provided in the paper.
+> `mfqev2`: MFQEv2 dataset will be adopted.
+> `4G`: 4 GPUs will be used for the below training. Similarly, you can also edit `option_R3_mfqev2_1G.yml` and `option_R3_mfqev2_2G.yml` if needed.
 
 **Generate LMDB to speed up IO during training.**
 
@@ -159,13 +135,31 @@ See `script.sh`.
 
 See `script.sh`.
 
-Pre-trained models will be released in Sep.
-
 ## 4. Results
 
-Similar to that in the original paper. Results will be released in Sep.
+Similar to that in the original paper.
 
 ## 5. Q&A
+
+> How to compress YUV videos?
+
+<span id="compress"></span>
+
+We also provide video compression tools in the MFQEv2 dataset links.
+
+Take 18 test sequences as examples.
+
+1. Unzip the `test_18.zip` into `test_18/raw` folder. It contains 18 raw videos.
+2. Generate video config files: `python main_generate_video_cfg.py`. Args:
+   - [line 6] `ubuntu` or `windows`
+3. Generate `.bat` or `.sh` files: `python main_generate_bat.py`. Args:
+   - [line 7] QPs to be encoded, e.g., `[22,27,32,37,42]`
+   - [line 8] Num of bat files in parallel
+   - [line 9] `ubuntu` or `windows`
+   - [line 10] `test` or `train`
+4. Run all `.bat` or `.sh` in `video_compression/bat/test_18`.
+
+Note: On Ubuntu system, first `$ chmod +x TAppEncoderStatic`.
 
 > How we enlarge the dataset?
 
@@ -173,23 +167,32 @@ Following BasicSR, we set `sampling index = target index % dataset len`.
 
 For example, if we have a dataset which volume is 4 and enlargement ratio is 2, then we will sample images at indexes equal 0, 1, 2, 3, 0, 1, 2, 3. Note that at each sampling, we will randomly crop the image. Therefore, the patches cropped at the same image but different times can be different.
 
-Besides, we will shuffle the data loader at the start of each epoch. Enlarging epoch can help reduce the building time.
+Besides, the data loader will be shuffled at the start of each epoch. Enlarging epoch can help reduce the total starting times.
 
 > Why we set the number of iteration not epoch?
 
-Because we can enlarge the dataset with various ratio, the number of epoch is meaningless for us. However, the number of iteration indicates the number of sampling batches.
+Considering that we can enlarge the dataset with various ratio, the number of epoch is meaningless. In the meanwhile, the number of iteration indicates the number of sampling batches, which is more meaningful to us.
 
-> Maybe slow at testing.
+## 6. License & Citation
 
-We use a data loader with `batch_size=1` to load 7 low-quality frames and 1 ground-truth frame at one time. Although the memory cost is low, some frames will be loaded multiple times. A faster solution is to load all frames (Y channels) of a YUV sequence at one time.
+You can **use, redistribute, and adapt** the material for **non-commercial purposes**, as long as you give appropriate credit by **citing the following paper** and **indicating any changes** that you've made.
 
-> Other datasets such as Vimeo-90K.
+```tex
+@inproceedings{STDF,
+  title={Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement},
+  author={Deng, Jianing and Wang, Li and Pu, Shiliang and Zhuo, Cheng},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={34},
+  number={07},
+  pages={10696--10703},
+  year={2020}
+}
+```
 
-We will release codes and guideline in Sep.
+Special thanks to:
 
-## 6. License
-
-You can **use, redistribute, and adapt** the material for **non-commercial purposes**, as long as you give appropriate credit by **citing our paper** and **indicating any changes** that you've made.
+- Jianing Deng (邓家宁, the author of STDF): network structure and training details.
+- [BasicSR](https://github.com/xinntao/BasicSR): useful tools and functions.
 
 ## 7. See more
 
