@@ -22,7 +22,7 @@ PyTorch implementation of [Spatio-Temporal Deformable Convolution for Compressed
 
 **Notice**: The dataset and training method are different from those in the original paper.
 
-If you have any advice or question, feel free to contact: ryanxingql@gmail.com.
+Feel free to contact: ryanxingql@gmail.com.
 
 **To-do in Sep.**
 
@@ -197,10 +197,11 @@ Special thanks to:
 ## 7. See more
 
 - [MFQEv2 (TPAMI 2019)](https://github.com/RyanXingQL/MFQEv2.0)
-  - A multi-frame quality enhancement approach on compressed videos.
-  - The first to use high-quality frames to enhance neighboring low-quality frame, i.e., taking advantage of the quality fluctuation in compressed videos.
-  - A database including 108 multi-resolution long raw videos for training, 18 test sequences recommended by ITU-T, and an HEVC compression toolbox. We use it in this demo.
+  - The first **multi-frame** quality enhancement approach for compressed videos.
+  - The first to consider and utilize the **quality fluctuation** feature of compressed videos.
+  - Enhance low-quality frames using **neighboring high-quality** frames.
 
 - [RBQE (ECCV 2020)](https://github.com/RyanXingQL/RBQE)
-  - The first resource-efficient quality enhancement approach on compressed images.
-  - A Tchebichef-moments-based IQA module.
+  - A **single blind** enhancement model for HEVC/JPEG-compressed images with a **wide range** of Quantization Parameters (QPs) or Quality Factors (QFs).
+  - A **multi-output dynamic** network with **early-exit** mechanism for easy input.
+  - A **Tchebichef-moments** based **NR-IQA** approach for early-exit decision. This IQA approach is highly interpretable and sensitive to blocking energy detection.
