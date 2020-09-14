@@ -38,14 +38,17 @@ Feel free to contact: ryanxingql@gmail.com.
 - Ubuntu 20.04/18.04
 - CUDA 10.1
 - PyTorch 1.16
+- Packages: tqdm, lmdb, opencv-python, scikit-image
 
 Suppose that you have installed CUDA 10.1, then:
 
 ```bash
+$ git clone --depth=1 https://github.com/RyanXingQL/STDF-PyTorch 
+$ cd STDF-PyTorch/
 $ conda create -n stdf python=3.7 -y
 $ conda activate stdf
 $ python -m pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
-$ python -m pip install tqdm scikit-image lmdb opencv-python
+$ python -m pip install tqdm lmdb opencv-python scikit-image
 ```
 
 ### 1.2. DCNv2
@@ -53,11 +56,11 @@ $ python -m pip install tqdm scikit-image lmdb opencv-python
 **Build DCNv2.**
 
 ```bash
-$ cd ops/dcn
+$ cd ops/dcn/
 $ bash build.sh
 ```
 
-**[Optional] Simply check if DCNv2 works.**
+**(Optional) Check if DCNv2 works.**
 
 ```bash
 $ python simple_check.py
@@ -69,9 +72,9 @@ $ python simple_check.py
 
 **Download the raw dataset.**
 
-[[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0)
+Download link: [[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0)
 
-(Chinese researchers: [[北航网盘]](https://bhpan.buaa.edu.cn:443/link/1B7824A57299DA36B89FC4D3BC90EF7A))
+For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1oBZf75bFGRanLmQQLAg4Ew), 提取码mfqe)
 
 > MFQEv2 dataset includes 108 lossless YUV sequences for training, and 18 test sequences recommended by ITU-T.
 

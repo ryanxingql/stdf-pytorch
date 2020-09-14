@@ -19,5 +19,6 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node
 # TEST
 # ==========
 
-# 1 GPU, no matter 1G, 2G or 4G. YAML for training and test should be the same!
+# use 1 GPU, no matter _1G.yml, _2G.yml or _4G.yml. 
+# YAMLs for training and test are better the same to ensure the same exp_name and network structure.
 CUDA_VISIBLE_DEVICES=0 python test.py --opt_path option_R3_mfqev2_4G.yml
