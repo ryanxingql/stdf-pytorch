@@ -237,9 +237,9 @@ def main():
         ori_aver_dict[index_vid].get_ave() for index_vid in range(test_vid_num)
         ])
     msg = (
-        f"{'> ori: [{:.3f}] {:s}'.format(ave_ori, unit)}"
-        '\n'
-        f"{'> ave: [{:.3f}] {:s}'.format(ave_per, unit)}"
+        f"{'> ori: [{:.3f}] {:s}'.format(ave_ori, unit)}\n"
+        f"{'> ave: [{:.3f}] {:s}'.format(ave_per, unit)}\n"
+        f"{'> delta: [{:.3f}] {:s}'.format(ave_per - ave_ori, unit)}"
         )
     print(msg)
     log_fp.write(msg + '\n')

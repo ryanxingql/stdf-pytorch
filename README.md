@@ -5,7 +5,7 @@
   - [1. Pre-request](#1-pre-request)
     - [1.1. Environment](#11-environment)
     - [1.2. DCNv2](#12-dcnv2)
-    - [1.3. Dataset (MFQEv2)](#13-dataset-mfqev2)
+    - [1.3. MFQEv2 dataset](#13-mfqev2-dataset)
   - [2. Train](#2-train)
   - [3. Test](#3-test)
   - [4. Results](#4-results)
@@ -26,10 +26,8 @@ Feel free to contact: ryanxingql@gmail.com.
 
 **To-do in Sep.**
 
-- [ ] Pre-trained models and corresponding results (similar to the original paper).
 - [ ] Fast test code that load all frames of a YUV video at one time.
 - [ ] Vimeo-90K dataset and JPEG compression tool.
-- [ ] All-in-one HEVC compression tool with multiprocessing.
 
 ## 1. Pre-request
 
@@ -68,7 +66,7 @@ $ python simple_check.py
 
 > The DCNv2 source files here is different from the [open-sourced version](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
 
-### 1.3. Dataset (MFQEv2)
+### 1.3. MFQEv2 dataset
 
 **Download the raw dataset.**
 
@@ -80,29 +78,36 @@ For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1oBZf75bFGRanL
 
 **Compress both training and test sequences by HM16.5 at LDP mode, QP=37.**
 
-See [Q&A: How to compress](#compress).
+We have also provided the video compression toolbox in the dataset link.
 
-**Place datasets as follows.**
+```bash
+$ cd video_compression/
+$ chmod +x TAppEncoderStatic
+$ python unzip_n_compress.py
+```
+
+Finally, we will get:
 
 ```tex
-MFQEv2/
+MFQEv2_dataset/
 ├── train_108/
 │   ├── raw/
 │   └── HM16.5_LDP/
 │       └── QP37/
-└── test_18/
-    ├── raw/
-    └── HM16.5_LDP/
-        └── QP37/
+├── test_18/
+│   ├── raw/
+│   └── HM16.5_LDP/
+│       └── QP37/
+├── video_compression/
+│   └── ...
+└── README.md
 ```
 
 **Edit `option_R3_mfqev2_4G.yml`.**
 
-Suppose the folder `MFQEv2/` is placed at `/media/x/Database/MFQEv2/`, then you should assign `/media/x/Database/MFQEv2` to `dataset -> train -> root` in YAML.
+Suppose the folder `MFQEv2_dataset/` is placed at `/raid/xql/datasets/MFQEv2_dataset/`, then you should assign `/raid/xql/datasets/MFQEv2_dataset/` to `dataset -> train -> root` in YAML.
 
-> `R3`: one of the network structures provided in the paper.
-> `mfqev2`: MFQEv2 dataset will be adopted.
-> `4G`: 4 GPUs will be used for the below training. Similarly, you can also edit `option_R3_mfqev2_1G.yml` and `option_R3_mfqev2_2G.yml` if needed.
+> `R3`: one of the network structures provided in the paper; `mfqev2`: MFQEv2 dataset will be adopted; `4G`: 4 GPUs will be used for the below training. Similarly, you can also edit `option_R3_mfqev2_1G.yml` and `option_R3_mfqev2_2G.yml` if needed.
 
 **Generate LMDB to speed up IO during training.**
 
@@ -113,7 +118,7 @@ $ python create_lmdb_mfqev2.py
 Now you will get all needed data:
 
 ```tex
-MFQEv2/
+MFQEv2_dataset/
 ├── train_108/
 │   ├── raw/
 │   └── HM16.5_LDP/
@@ -140,29 +145,38 @@ See `script.sh`.
 
 ## 4. Results
 
-Similar to that in the original paper.
+```log
+loading model exp/MFQEv2_R3_enlarge300x/ckp_290000.pt...
+> model exp/MFQEv2_R3_enlarge300x/ckp_290000.pt loaded.
+
+<<<<<<<<<< Results >>>>>>>>>>
+BQMall_832x480_600.yuv: [31.297] dB -> [32.221] dB
+BQSquare_416x240_600.yuv: [28.270] dB -> [29.078] dB
+BQTerrace_1920x1080_600.yuv: [31.247] dB -> [31.852] dB
+BasketballDrill_832x480_500.yuv: [31.591] dB -> [32.359] dB
+BasketballDrive_1920x1080_500.yuv: [33.227] dB -> [33.963] dB
+BasketballPass_416x240_500.yuv: [30.482] dB -> [31.446] dB
+BlowingBubbles_416x240_500.yuv: [27.794] dB -> [28.465] dB
+Cactus_1920x1080_500.yuv: [32.207] dB -> [32.918] dB
+FourPeople_1280x720_600.yuv: [34.589] dB -> [35.533] dB
+Johnny_1280x720_600.yuv: [36.375] dB -> [37.161] dB
+Kimono_1920x1080_240.yuv: [34.411] dB -> [35.272] dB
+KristenAndSara_1280x720_600.yuv: [35.887] dB -> [36.895] dB
+ParkScene_1920x1080_240.yuv: [31.583] dB -> [32.140] dB
+PartyScene_832x480_500.yuv: [27.802] dB -> [28.402] dB
+PeopleOnStreet_2560x1600_150.yuv: [31.388] dB -> [32.557] dB
+RaceHorses_416x240_300.yuv: [29.320] dB -> [30.055] dB
+RaceHorses_832x480_300.yuv: [30.094] dB -> [30.557] dB
+Traffic_2560x1600_150.yuv: [33.176] dB -> [33.866] dB
+> ori: [31.708] dB
+> ave: [32.486] dB
+> delta: [0.778] dB
+TOTAL TIME: [0.2] h
+```
+
+Pre-trained models: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf)
 
 ## 5. Q&A
-
-> How to compress YUV sequences?
-
-<span id="compress"></span>
-
-We have provided the video compression toolbox in the MFQEv2 dataset link.
-
-Take 18 test sequences as examples.
-
-1. Unzip the `test_18.zip` into `test_18/raw` folder. It contains 18 raw videos.
-2. Generate video config files by running `python main_generate_video_cfg.py`. Args:
-   - `system`(line 6): (`ubuntu` | `windows`)
-3. Generate `.bat` or `.sh` files by running `python main_generate_bat.py`. Args:
-   - `QP_list` (line 7): QPs to be encoded, e.g., `[37]`, `[22,27,32,37,42]`.
-   - `num_bat` (line 8): num of bat files. You can run them in parallel.
-   - `system` (line 9): (`ubuntu` | `windows`)
-   - `video_type` (line 10): (`test` | `train`)
-4. Run all `.bat` or `.sh` in `video_compression/bat/test_18`. Note that on Ubuntu system, first `$ chmod +x TAppEncoderStatic`.
-
-The same applies to 108 training sequences.
 
 > How do we enlarge the dataset?
 

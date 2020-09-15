@@ -390,7 +390,7 @@ def main():
                 lr = optimizer.param_groups[0]['lr']
                 loss_item = loss.item()
                 msg = (
-                    f"iter: [{num_iter_accum}]/{num_iter - 1}, "
+                    f"iter: [{num_iter_accum}]/{num_iter}, "
                     f"epoch: [{current_epoch}]/{num_epoch - 1}, "
                     "lr: [{:.3f}]x1e-4, loss: [{:.4f}]".format(
                         lr*1e4, loss_item
@@ -399,8 +399,8 @@ def main():
                 print(msg)
                 log_fp.write(msg + '\n')
 
-            if ((num_iter_accum % interval_val == 0) and (rank == 0)) or \
-                (num_iter_accum == num_iter):
+            if ((num_iter_accum % interval_val == 0) or \
+                (num_iter_accum == num_iter)) and (rank == 0):
                 # save model
                 checkpoint_save_path = (
                     f"{opts_dict['train']['checkpoint_save_path_pre']}"

@@ -3,7 +3,7 @@ dataset:
     type: MFQEv2Dataset
     
     # for lmdb
-    root: /raid/xql/datasets/MFQEv2
+    root: /raid/xql/datasets/MFQEv2_dataset
     gt_folder: train_108/raw/
     lq_folder: train_108/HM16.5_LDP/QP37/
     
@@ -58,7 +58,7 @@ network:
     base_ks: 3
 
 train:
-  exp_name: MFQEv2_R3_enlarge300x_scheduler  # default: timestr. None: ~
+  exp_name: MFQEv2_R3_enlarge300x  # default: timestr. None: ~
   random_seed: 7
   pre-val: False  # evaluate criterion before training, e.g., ori PSNR
   num_iter: !!float 3e+5
@@ -88,7 +88,7 @@ train:
     unit: dB
 
 test:
-  restore_iter: !!float 145000
+  restore_iter: !!float 290000
   pbar_len: 100
 
   criterion:

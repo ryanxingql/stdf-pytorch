@@ -3,7 +3,7 @@ dataset:
     type: MFQEv2Dataset
     
     # for lmdb
-    root: /media/x/Database/MFQEv2
+    root: /raid/xql/datasets/Database/MFQEv2_dataset
     gt_folder: train_108/raw/
     lq_folder: train_108/HM16.5_LDP/QP37/
     
@@ -88,7 +88,7 @@ train:
     unit: dB
 
 test:
-  restore_iter: !!float 145000
+  restore_iter: !!float 290000
   pbar_len: 100
 
   criterion:
