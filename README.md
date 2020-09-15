@@ -141,14 +141,16 @@ See `script.sh`.
 
 ## 3. Test
 
-First sym-link MFQEv2_dataset to `./data/`.
+See `script.sh`.
+
+Pre-trained models: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf)
+
+Note: If you did not run `create_lmdb`, you should first sym-link MFQEv2 dataset to `./data/`.
 
 ```bash
 $ mkdir data/
 $ ln -s /your/path/to/MFQEv2_dataset/ data/
 ```
-
-Then run. See `script.sh`.
 
 ## 4. Results
 
@@ -180,8 +182,6 @@ Traffic_2560x1600_150.yuv: [33.176] dB -> [33.866] dB
 > delta: [0.778] dB
 TOTAL TIME: [0.2] h
 ```
-
-Pre-trained models: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf)
 
 ## 5. Q&A
 
