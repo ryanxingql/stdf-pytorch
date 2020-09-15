@@ -36,7 +36,7 @@ Feel free to contact: ryanxingql@gmail.com.
 - Ubuntu 20.04/18.04
 - CUDA 10.1
 - PyTorch 1.16
-- Packages: tqdm, lmdb, opencv-python, scikit-image
+- Packages: tqdm, lmdb, pyyaml, opencv-python, scikit-image
 
 Suppose that you have installed CUDA 10.1, then:
 
@@ -46,7 +46,7 @@ $ cd STDF-PyTorch/
 $ conda create -n stdf python=3.7 -y
 $ conda activate stdf
 $ python -m pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
-$ python -m pip install tqdm lmdb opencv-python scikit-image
+$ python -m pip install tqdm lmdb pyyaml opencv-python scikit-image
 ```
 
 ### 1.2. DCNv2
@@ -141,7 +141,14 @@ See `script.sh`.
 
 ## 3. Test
 
-See `script.sh`.
+First sym-link MFQEv2_dataset to `./data/`.
+
+```bash
+$ mkdir data/
+$ ln -s /your/path/to/MFQEv2_dataset/ data/
+```
+
+Then run. See `script.sh`.
 
 ## 4. Results
 

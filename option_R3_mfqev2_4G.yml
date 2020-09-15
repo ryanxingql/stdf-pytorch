@@ -3,7 +3,7 @@ dataset:
     type: MFQEv2Dataset
     
     # for lmdb
-    root: /raid/xql/datasets/Database/MFQEv2_dataset
+    root: /raid/xql/datasets/MFQEv2_dataset
     gt_folder: train_108/raw/
     lq_folder: train_108/HM16.5_LDP/QP37/
     
