@@ -80,6 +80,10 @@ For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1oBZf75bFGRanL
 
 We have also provided the video compression toolbox in the dataset link.
 
+First edit `option.yml` in `video_compression/`, i.e., `dir_dataset` and `qp`.
+
+Then run:
+
 ```bash
 $ cd video_compression/
 $ chmod +x TAppEncoderStatic
