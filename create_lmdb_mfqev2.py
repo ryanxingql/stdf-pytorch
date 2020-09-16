@@ -7,14 +7,21 @@ key: assigned from 0000 to 9999.
 NOTICE: MAX NFS OF LQ IS 300!!!
 
 Sym-link MFQEv2 dataset root to ./data folder."""
+import argparse
 import os
 import glob
 import yaml
 import os.path as op
 from utils import make_y_lmdb_from_yuv
 
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    '--opt_path', type=str, default='option_R3_mfqev2_4G.yml', 
+    help='Path to option YAML file.'
+    )
+args = parser.parse_args()
 
-yml_path = 'option_R3_mfqev2_1G.yml'
+yml_path = args.opt_path
 radius = 3  # must be 3!!! otherwise, you should change dataset.py
 
 

@@ -116,7 +116,7 @@ Suppose the folder `MFQEv2_dataset/` is placed at `/raid/xql/datasets/MFQEv2_dat
 **Generate LMDB to speed up IO during training.**
 
 ```bash
-$ python create_lmdb_mfqev2.py
+$ python create_lmdb_mfqev2.py --opt_path option_R3_mfqev2_4G.yml
 ```
 
 Now you will get all needed data:
