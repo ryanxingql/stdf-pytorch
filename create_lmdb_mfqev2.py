@@ -117,7 +117,7 @@ def create_lmdb_for_mfqev2():
     if not op.exists('data/MFQEv2'):
         if not op.exists('data/'):
             os.system("mkdir data/")
-        os.system(f"ln -s {root_dir} ./data")
+        os.system(f"ln -s {root_dir} ./data/MFQEv2")
         print("Sym-linking done.")
     else:
         print("data/MFQEv2 already exists.")
