@@ -509,7 +509,7 @@ def main():
             f"Timestamp: [{utils.get_timestr()}]"
             )
         print(msg)
-        log_fp.write(msg = '\n')
+        log_fp.write(msg + '\n')
         
         log_fp.close()
 
