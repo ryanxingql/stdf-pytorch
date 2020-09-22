@@ -153,7 +153,7 @@ Note: If you did not run `create_lmdb`, you should first sym-link MFQEv2 dataset
 
 ```bash
 $ mkdir data/
-$ ln -s /your/path/to/MFQEv2_dataset/ data/
+$ ln -s /your/path/to/MFQEv2_dataset/ data/MFQEv2
 ```
 
 ## 4. Results
