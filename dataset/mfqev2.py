@@ -32,11 +32,11 @@ class MFQEv2Dataset(data.Dataset):
         
         # dataset paths
         self.gt_root = op.join(
-            'data/MFQEv2/', 
+            'data/MFQEv2_dataset/', 
             self.opts_dict['gt_path']
             )
         self.lq_root = op.join(
-            'data/MFQEv2/', 
+            'data/MFQEv2_dataset/', 
             self.opts_dict['lq_path']
             )
 
