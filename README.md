@@ -24,11 +24,6 @@ PyTorch implementation of [Spatio-Temporal Deformable Convolution for Compressed
 
 Feel free to contact: ryanxingql@gmail.com.
 
-**To-do in Sep.**
-
-- [ ] Fast test code that load all frames of a YUV video at one time.
-- [ ] Vimeo-90K dataset and JPEG compression tool.
-
 ## 1. Pre-request
 
 ### 1.1. Environment
@@ -145,16 +140,30 @@ See `script.sh`.
 
 ## 3. Test
 
+**Test After Training**
+
 See `script.sh`.
 
-Pre-trained models: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf)
+**Test Without Training**
 
-Note: If you did not run `create_lmdb`, you should first sym-link MFQEv2 dataset to `./data/`.
+If you did not run `create_lmdb` for training, you should first sym-link MFQEv2 dataset to `./data/`.
 
 ```bash
 $ mkdir data/
 $ ln -s /your/path/to/MFQEv2_dataset/ data/MFQEv2
 ```
+
+Download the pre-trained model: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf)
+
+**Simply Test One Video**
+
+First download the pre-trained model, and then run:
+
+```bash
+$ CUDA_VISIBLE_DEVICES=0 python test_one_video.py
+```
+
+See `test_one_video.py` for more details.
 
 ## 4. Results
 

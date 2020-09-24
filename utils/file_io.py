@@ -37,22 +37,16 @@ def import_yuv(seq_path, h, w, tot_frm, start_frm=0, only_y=True):
 
     # read data
     with open(seq_path, 'rb') as fp:
-        fp.seek(int(blk_size * start_frm), 0)  # skip frames
-
         for i in range(tot_frm):
+            fp.seek(int(blk_size * (start_frm + i)), 0)  # skip frames
             y_frm = np.fromfile(fp, dtype=np.uint8, count=y_size).reshape(h, w)
             if only_y:
-                np.fromfile(fp, count=u_size)
-                np.fromfile(fp, count=v_size)
+                y_seq[i, ...] = y_frm
             else:
                 u_frm = np.fromfile(fp, dtype=np.uint8, \
                     count=u_size).reshape(hh, ww)
                 v_frm = np.fromfile(fp, dtype=np.uint8, \
                     count=v_size).reshape(hh, ww)
-
-            if only_y:
-                y_seq[i, ...] = y_frm
-            else:
                 y_seq[i, ...], u_seq[i, ...], v_seq[i, ...] = y_frm, u_frm, v_frm
 
     if only_y:
