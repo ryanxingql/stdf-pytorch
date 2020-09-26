@@ -168,11 +168,11 @@ def _read_img_worker(path, key, compress_level):
 from utils.file_io import import_yuv
 import numpy as np
 
-def _read_y_from_yuv_worker(video_path, index_frame, key, compress_level):
+def _read_y_from_yuv_worker(video_path, yuv_type, h, w, index_frame, key, compress_level):
     """不要把该函数放到主函数里，否则无法并行。"""
-    w, h = map(int, video_path.split('.')[-2].split('_')[-2].split('x'))
     img = import_yuv(
         seq_path=video_path, 
+        yuv_type=yuv_type, 
         h=h, 
         w=w, 
         tot_frm=1, 
@@ -188,8 +188,9 @@ def _read_y_from_yuv_worker(video_path, index_frame, key, compress_level):
 
 
 def make_y_lmdb_from_yuv(
-        video_path_list, index_frame_list, key_list, lmdb_path, batch=7000, compress_level=1, 
-        multiprocessing_read=False, map_size=None
+        video_path_list, index_frame_list, key_list, lmdb_path, 
+        yuv_type='420p', h=None, w=None, 
+        batch=7000, compress_level=1, multiprocessing_read=False, map_size=None
         ):
     # check
     assert lmdb_path.endswith('.lmdb'), "lmdb_path must end with '.lmdb'."
@@ -219,6 +220,9 @@ def make_y_lmdb_from_yuv(
             _read_y_from_yuv_worker,
             args=(
                 video_path_list[iter_frm], 
+                yuv_type, 
+                h, 
+                w, 
                 index_frame_list[iter_frm], 
                 key_list[iter_frm], 
                 compress_level
@@ -237,7 +241,8 @@ def make_y_lmdb_from_yuv(
         biggest_size = 0
         for iter_img in range(num_img):
             vid_path = video_path_list[iter_img]
-            w, h = map(int, vid_path.split('.')[-2].split('_')[-2].split('x'))
+            if w == None:
+                w, h = map(int, vid_path.split('.')[-2].split('_')[-2].split('x'))
             img_size = w * h
             if img_size > biggest_size:
                 biggest_size = img_size
@@ -245,6 +250,9 @@ def make_y_lmdb_from_yuv(
         # obtain data size of one image
         _, img_byte, _ = _read_y_from_yuv_worker(
             video_path_list[biggest_index], 
+            yuv_type, 
+            h, 
+            w, 
             index_frame_list[biggest_index], 
             key_list[biggest_index], 
             compress_level

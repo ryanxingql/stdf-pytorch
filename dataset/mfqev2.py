@@ -132,9 +132,14 @@ class MFQEv2Dataset(data.Dataset):
 
 
 class VideoTestMFQEv2Dataset(data.Dataset):
-    """Video test dataset for MFQEv2 dataset recommended by ITU-T.
+    """
+    Video test dataset for MFQEv2 dataset recommended by ITU-T.
 
-    For validation data: Disk IO is adopted."""
+    For validation data: Disk IO is adopted.
+    
+    Test all frames. For the front and the last frames, they serve as their own
+    neighboring frames.
+    """
     def __init__(self, opts_dict, radius):
         super().__init__()
 

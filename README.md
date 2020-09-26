@@ -198,6 +198,28 @@ TOTAL TIME: [0.2] h
 
 ## 5. Q&A
 
+> Train and test on Vimeo-90K dataset.
+
+You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5. We also provide one-click programme at [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf).
+
+```tex
+Vimeo-90K/
+├── vimeo_septuplet/
+│   └── ...
+├── vimeo_septuplet_ycbcr/
+│   └── ...
+├── vimeo_septuplet_ycbcr_intra/
+│   └── ...
+├── vimeo90k_train_gt.lmdb/
+└── vimeo90k_train_lq.lmdb/
+```
+
+The LMDB preparation, option YAML, training and test codes have been already provided in this repository.
+
+> The epoch index starts from 0, while the iter index (also model index) starts from 1.
+
+Small bug. I will fix it some time.
+
 > How do we enlarge the dataset?
 
 Following BasicSR, we set `sampling index = target index % dataset len`.

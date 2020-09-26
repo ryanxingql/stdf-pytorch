@@ -1,0 +1,97 @@
+dataset:
+  root: /media/x/Database/Vimeo-90K/
+
+  train:  # LMDB
+    type: Vimeo90KDataset
+    
+    # for lmdb
+    gt_folder: vimeo_septuplet_ycbcr/
+    lq_folder: vimeo_septuplet_ycbcr_intra/qp37/
+    
+    # for dataset
+    gt_path: vimeo90k_train_gt.lmdb
+    lq_path: vimeo90k_train_lq.lmdb
+    meta_path: vimeo_septuplet/sep_trainlist.txt
+    gt_size: 128  # ground truth patch size: gt_size * gt_size
+    use_flip: True
+    use_rot: True  # rotation per 90 degrees
+    random_reverse: False
+
+    # for datasampler
+    enlarge_ratio: 300  # enlarge dataset by randomly cropping.
+    
+    # for dataloader
+    num_worker_per_gpu: 6  # 12 in total. mainly affect IO speed
+    batch_size_per_gpu: 16  # bs=32, divided by 2 GPUs
+  
+  val:  # Disk IO
+    type: VideoTestVimeo90KDataset
+    gt_path: vimeo_septuplet_ycbcr/
+    lq_path: vimeo_septuplet_ycbcr_intra/qp37/
+    meta_path: vimeo_septuplet/sep_testlist.txt
+    #enlarge_ratio: 1
+    #use_flip: False
+    #use_rot: False
+    #random_reverse: False
+
+  test:
+    type: VideoTestVimeo90KDataset
+    gt_path: vimeo_septuplet_ycbcr/
+    lq_path: vimeo_septuplet_ycbcr_intra/qp37/
+    meta_path: vimeo_septuplet/sep_testlist.txt
+
+network:
+  radius: 3  # total num of input frame = 2 * radius + 1
+
+  stdf:
+    in_nc: 1  # 1 for Y
+    out_nc: 64
+    nf: 32  # num of feature maps
+    nb: 3  # num of conv layers
+    base_ks: 3
+    deform_ks: 3  # size of the deformable kernel
+  
+  qenet:
+    in_nc: 64  # = out_nc of stdf
+    out_nc: 1  # 1 for Y
+    nf: 48
+    nb: 8
+    base_ks: 3
+
+train:
+  exp_name: Vimeo90K_R3_enlarge300x  # default: timestr. None: ~
+  random_seed: 7
+  pre-val: True  # evaluate criterion before training, e.g., ori PSNR
+  num_iter: !!float 3e+5
+  interval_print: !!float 100
+  interval_val: !!float 5e+3  # also save model
+  pbar_len: 100
+
+  optim:
+    type: Adam
+    lr: !!float 1e-4  # init lr of scheduler
+    betas: [0.9, 0.999]
+    eps: !!float 1e-08
+
+  scheduler:
+    is_on: False
+    type: CosineAnnealingRestartLR
+    periods: [!!float 5e+4, !!float 5e+4, !!float 5e+4, !!float 5e+4, !!float 5e+4, !!float 5e+4]  # epoch interval
+    restart_weights: [1, 0.5, 0.5, 0.5, 0.5, 0.5]
+    eta_min: !!float 1e-7
+
+  loss:
+    type: CharbonnierLoss
+    eps: !!float 1e-6
+
+  criterion:
+    type: PSNR
+    unit: dB
+
+test:
+  restore_iter: !!float 610000
+  pbar_len: 100
+
+  criterion:
+    type: PSNR
+    unit: dB

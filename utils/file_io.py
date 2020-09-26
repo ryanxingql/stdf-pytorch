@@ -5,7 +5,7 @@ import numpy as np
 # ==========
 
 
-def import_yuv(seq_path, h, w, tot_frm, start_frm=0, only_y=True):
+def import_yuv(seq_path, h, w, tot_frm, yuv_type='420p', start_frm=0, only_y=True):
     """Load Y, U, and V channels separately from a 8bit yuv420p video.
     
     Args:
@@ -13,6 +13,7 @@ def import_yuv(seq_path, h, w, tot_frm, start_frm=0, only_y=True):
         h (int): Height.
         w (int): Width.
         tot_frm (int): Total frames to be imported.
+        yuv_type: 420p or 444p
         start_frm (int): The first frame to be imported. Default 0.
         only_y (bool): Only import Y channels.
 
@@ -25,7 +26,13 @@ def import_yuv(seq_path, h, w, tot_frm, start_frm=0, only_y=True):
         参见: https://en.wikipedia.org/wiki/YUV
     """
     # setup params
-    hh, ww = h // 2, w // 2
+    if yuv_type == '420p':
+        hh, ww = h // 2, w // 2
+    elif yuv_type == '444p':
+        hh, ww = h, w
+    else:
+        raise Exception('yuv_type not supported.')
+
     y_size, u_size, v_size = h * w, hh * ww, hh * ww
     blk_size = y_size + u_size + v_size
     
