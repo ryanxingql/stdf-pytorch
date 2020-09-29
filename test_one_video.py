@@ -39,11 +39,15 @@ def main():
     msg = f'loading model {ckp_path}...'
     print(msg)
     checkpoint = torch.load(ckp_path)
-    new_state_dict = OrderedDict()
-    for k, v in checkpoint['state_dict'].items():
-        name = k[7:]  # remove module
-        new_state_dict[name] = v
-    model.load_state_dict(new_state_dict)
+    if 'module.' in list(checkpoint['state_dict'].keys())[0]:  # multi-gpu training
+        new_state_dict = OrderedDict()
+        for k, v in checkpoint['state_dict'].items():
+            name = k[7:]  # remove module
+            new_state_dict[name] = v
+        model.load_state_dict(new_state_dict)
+    else:  # single-gpu training
+        model.load_state_dict(checkpoint['state_dict'])
+
     msg = f'> model {ckp_path} loaded.'
     print(msg)
     model = model.cuda()

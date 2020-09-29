@@ -126,14 +126,15 @@ def main():
     log_fp.write(msg + '\n')
 
     checkpoint = torch.load(checkpoint_save_path)
-
-    new_state_dict = OrderedDict()
+    if 'module.' in list(checkpoint['state_dict'].keys())[0]:  # multi-gpu training
+        new_state_dict = OrderedDict()
+        for k, v in checkpoint['state_dict'].items():
+            name = k[7:]  # remove module
+            new_state_dict[name] = v
+        model.load_state_dict(new_state_dict)
+    else:  # single-gpu training
+        model.load_state_dict(checkpoint['state_dict'])
     
-    for k, v in checkpoint['state_dict'].items():
-        name = k[7:]  # remove module
-        new_state_dict[name] = v
-    model.load_state_dict(new_state_dict)
-
     msg = f'> model {checkpoint_save_path} loaded.'
     print(msg)
     log_fp.write(msg + '\n')
