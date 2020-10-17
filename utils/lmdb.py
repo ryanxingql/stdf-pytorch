@@ -170,6 +170,8 @@ import numpy as np
 
 def _read_y_from_yuv_worker(video_path, yuv_type, h, w, index_frame, key, compress_level):
     """不要把该函数放到主函数里，否则无法并行。"""
+    if h == None:
+        w, h = [int(k) for k in op.basename(video_path).split('_')[1].split('x')]  # for MFQEv2 dataset
     img = import_yuv(
         seq_path=video_path, 
         yuv_type=yuv_type, 

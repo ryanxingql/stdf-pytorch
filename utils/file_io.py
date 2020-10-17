@@ -61,6 +61,15 @@ def import_yuv(seq_path, h, w, tot_frm, yuv_type='420p', start_frm=0, only_y=Tru
     else:
         return y_seq, u_seq, v_seq
 
+
+def write_ycbcr(y, cb, cr, vid_path):
+    with open(vid_path, 'wb') as fp:
+        for ite_frm in range(len(y)):
+            fp.write(y[ite_frm].reshape(((y[0].shape[0])*(y[0].shape[1]), )))
+            fp.write(cb[ite_frm].reshape(((cb[0].shape[0])*(cb[0].shape[1]), )))
+            fp.write(cr[ite_frm].reshape(((cr[0].shape[0])*(cr[0].shape[1]), )))
+
+
 # ==========
 # FileClient
 # ==========

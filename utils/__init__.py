@@ -18,7 +18,7 @@ Principle:
 
 Contact: ryanxingql@gmail.com
 """
-from .file_io import (import_yuv, FileClient, dict2str, CPUPrefetcher)
+from .file_io import (import_yuv, write_ycbcr, FileClient, dict2str, CPUPrefetcher)
 from .conversion import (img2float32, ndarray2img, rgb2ycbcr, ycbcr2rgb, 
 rgb2gray, gray2rgb, bgr2rgb, rgb2bgr, paired_random_crop, augment, 
 totensor)
@@ -30,7 +30,7 @@ from .lmdb import make_lmdb_from_imgs, make_y_lmdb_from_yuv
 
 
 __all__ = [
-    'import_yuv', 'FileClient', 'dict2str', 'CPUPrefetcher', 
+    'import_yuv', 'write_ycbcr', 'FileClient', 'dict2str', 'CPUPrefetcher', 
     'img2float32', 'ndarray2img', 'rgb2ycbcr', 'ycbcr2rgb', 'rgb2gray', 
     'gray2rgb', 'bgr2rgb', 'rgb2bgr', 'paired_random_crop', 'augment', 
     'totensor', 
