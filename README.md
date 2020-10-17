@@ -22,6 +22,10 @@ PyTorch implementation of [Spatio-Temporal Deformable Convolution for Compressed
 
 **Notice**: The dataset and training method are different from those in the original paper.
 
+![network](network.png)
+
+(Figure copyright: Jianing Deng)
+
 Feel free to contact: ryanxingql@gmail.com.
 
 ## 1. Pre-request
