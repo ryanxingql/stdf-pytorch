@@ -1,6 +1,6 @@
-# STDF-PyTorch
+# Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement (AAAI 2020)
 
-- [STDF-PyTorch](#stdf-pytorch)
+- [Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement (AAAI 2020)](#spatio-temporal-deformable-convolution-for-compressed-video-quality-enhancement-aaai-2020)
   - [0. Background](#0-background)
   - [1. Pre-request](#1-pre-request)
     - [1.1. Environment](#11-environment)
