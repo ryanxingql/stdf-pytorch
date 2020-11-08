@@ -34,7 +34,7 @@ Feel free to contact: ryanxingql@gmail.com.
 
 - Ubuntu 20.04/18.04
 - CUDA 10.1
-- PyTorch 1.16
+- PyTorch 1.6
 - Packages: tqdm, lmdb, pyyaml, opencv-python, scikit-image
 
 Suppose that you have installed CUDA 10.1, then:
