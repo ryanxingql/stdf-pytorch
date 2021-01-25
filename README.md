@@ -22,7 +22,7 @@ PyTorch implementation of [Spatio-Temporal Deformable Convolution for Compressed
 
 **Notice**: The dataset and training method are different from those in the original paper.
 
-![network](network.png)
+![network](https://user-images.githubusercontent.com/34084019/105738811-675d2480-5f72-11eb-91f7-301301277f40.png)
 
 (Figure copyright: Jianing Deng)
 
@@ -40,12 +40,12 @@ Feel free to contact: ryanxingql@gmail.com.
 Suppose that you have installed CUDA 10.1, then:
 
 ```bash
-$ git clone --depth=1 https://github.com/RyanXingQL/STDF-PyTorch 
-$ cd STDF-PyTorch/
-$ conda create -n stdf python=3.7 -y
-$ conda activate stdf
-$ python -m pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
-$ python -m pip install tqdm lmdb pyyaml opencv-python scikit-image
+git clone --depth=1 https://github.com/RyanXingQL/STDF-PyTorch 
+cd STDF-PyTorch/
+conda create -n stdf python=3.7 -y
+conda activate stdf
+python -m pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+python -m pip install tqdm lmdb pyyaml opencv-python scikit-image
 ```
 
 ### 1.2. DCNv2
@@ -53,14 +53,14 @@ $ python -m pip install tqdm lmdb pyyaml opencv-python scikit-image
 **Build DCNv2.**
 
 ```bash
-$ cd ops/dcn/
-$ bash build.sh
+cd ops/dcn/
+bash build.sh
 ```
 
 **(Optional) Check if DCNv2 works.**
 
 ```bash
-$ python simple_check.py
+python simple_check.py
 ```
 
 > The DCNv2 source files here is different from the [open-sourced version](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
@@ -84,9 +84,9 @@ First edit `option.yml` in `video_compression/`, i.e., `dir_dataset` and `qp`.
 Then run:
 
 ```bash
-$ cd video_compression/
-$ chmod +x TAppEncoderStatic
-$ python unzip_n_compress.py
+cd video_compression/
+chmod +x TAppEncoderStatic
+python unzip_n_compress.py
 ```
 
 Finally, we will get:
@@ -115,7 +115,7 @@ Suppose the folder `MFQEv2_dataset/` is placed at `/raid/xql/datasets/MFQEv2_dat
 **Generate LMDB to speed up IO during training.**
 
 ```bash
-$ python create_lmdb_mfqev2.py --opt_path option_R3_mfqev2_4G.yml
+python create_lmdb_mfqev2.py --opt_path option_R3_mfqev2_4G.yml
 ```
 
 Now you will get all needed data:
@@ -153,8 +153,8 @@ See `script.sh`.
 If you did not run `create_lmdb` for training, you should first sym-link MFQEv2 dataset to `./data/`.
 
 ```bash
-$ mkdir data/
-$ ln -s /your/path/to/MFQEv2_dataset/ data/MFQEv2
+mkdir data/
+ln -s /your/path/to/MFQEv2_dataset/ data/MFQEv2
 ```
 
 Download the pre-trained model: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf)
@@ -164,7 +164,7 @@ Download the pre-trained model: [[Google Drive]](https://drive.google.com/drive/
 First download the pre-trained model, and then run:
 
 ```bash
-$ CUDA_VISIBLE_DEVICES=0 python test_one_video.py
+CUDA_VISIBLE_DEVICES=0 python test_one_video.py
 ```
 
 See `test_one_video.py` for more details.
