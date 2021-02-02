@@ -15,7 +15,7 @@
 
 ## 0. Background
 
-PyTorch implementation of [*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement*](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
+PyTorch implementation of [[*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement*]](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
 
 - A **simple** yet **effective** video quality enhancement network.
 - Adopt **feature alignment** by multi-frame **deformable convolutions**, instead of motion estimation and motion compensation.
@@ -63,7 +63,7 @@ bash build.sh
 python simple_check.py
 ```
 
-> The DCNv2 source files here is different from the [open-sourced version](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
+> The DCNv2 source files here is different from the [[open-sourced version]](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
 
 ### 1.3. MFQEv2 dataset
 
@@ -240,7 +240,7 @@ TOTAL TIME: [0.2] h
 
 <summary><b>Vimeo-90K dataset</b></summary>
 
-You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5. We also provide one-click programme at [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf).
+You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5. We also provide one-click programme at [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA).
 
 ```tex
 Vimeo-90K/
@@ -303,16 +303,16 @@ You can **use, redistribute, and adapt** the material for **non-commercial purpo
 Special thanks to:
 
 - Jianing Deng (邓家宁, the author of STDF): network structure and training details.
-- [BasicSR](https://github.com/xinntao/BasicSR): useful tools and functions.
+- [[BasicSR]](https://github.com/xinntao/BasicSR): useful tools and functions.
 
 ## 7. See more
 
-- [MFQEv2 (TPAMI 2019)](https://github.com/RyanXingQL/MFQEv2.0)
+- [[MFQEv2 (TPAMI 2019)]](https://github.com/RyanXingQL/MFQEv2.0)
   - The first **multi-frame** quality enhancement approach for compressed videos.
   - The first to consider and utilize the **quality fluctuation** feature of compressed videos.
   - Enhance low-quality frames using **neighboring high-quality** frames.
 
-- [RBQE (ECCV 2020)](https://github.com/RyanXingQL/RBQE)
+- [[RBQE (ECCV 2020)]](https://github.com/RyanXingQL/RBQE)
   - A **single blind** enhancement model for HEVC/JPEG-compressed images with a **wide range** of Quantization Parameters (QPs) or Quality Factors (QFs).
   - A **multi-output dynamic** network with **early-exit** mechanism for easy input.
   - A **Tchebichef-moments** based **NR-IQA** approach for early-exit decision. This IQA approach is highly interpretable and sensitive to blocking energy detection.
