@@ -1,6 +1,6 @@
-# Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement (AAAI 2020)
+# *Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement* (AAAI 2020)
 
-- [Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement (AAAI 2020)](#spatio-temporal-deformable-convolution-for-compressed-video-quality-enhancement-aaai-2020)
+- [*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement* (AAAI 2020)](#spatio-temporal-deformable-convolution-for-compressed-video-quality-enhancement-aaai-2020)
   - [0. Background](#0-background)
   - [1. Pre-request](#1-pre-request)
     - [1.1. Environment](#11-environment)
@@ -15,7 +15,7 @@
 
 ## 0. Background
 
-PyTorch implementation of [Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
+PyTorch implementation of [*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement*](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
 
 - A **simple** yet **effective** video quality enhancement network.
 - Adopt **feature alignment** by multi-frame **deformable convolutions**, instead of motion estimation and motion compensation.
@@ -67,15 +67,21 @@ python simple_check.py
 
 ### 1.3. MFQEv2 dataset
 
-**Download the raw dataset.**
+<details>
 
-Download link: [[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0)
+<summary><b>Download the raw dataset</b></summary>
 
-For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1oBZf75bFGRanLmQQLAg4Ew), 提取码mfqe)
+Download here: [[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0) [[百度网盘 (mfqe)]](https://pan.baidu.com/s/1oBZf75bFGRanLmQQLAg4Ew)
 
 > MFQEv2 dataset includes 108 lossless YUV sequences for training, and 18 test sequences recommended by ITU-T.
 
-**Compress both training and test sequences by HM16.5 at LDP mode, QP=37.**
+</details>
+
+<details>
+
+<summary><b>Compress sequences</b></summary>
+
+We now compress both training and test sequences by HM16.5 at LDP mode, QP=37.
 
 We have also provided the video compression toolbox in the dataset link.
 
@@ -106,13 +112,25 @@ MFQEv2_dataset/
 └── README.md
 ```
 
-**Edit `option_R3_mfqev2_4G.yml`.**
+</details>
+
+<details>
+
+<summary><b>Edit YML</b></summary>
+
+We now edit `option_R3_mfqev2_4G.yml`.
 
 Suppose the folder `MFQEv2_dataset/` is placed at `/raid/xql/datasets/MFQEv2_dataset/`, then you should assign `/raid/xql/datasets/MFQEv2_dataset/` to `dataset -> train -> root` in YAML.
 
 > `R3`: one of the network structures provided in the paper; `mfqev2`: MFQEv2 dataset will be adopted; `4G`: 4 GPUs will be used for the below training. Similarly, you can also edit `option_R3_mfqev2_1G.yml` and `option_R3_mfqev2_2G.yml` if needed.
 
-**Generate LMDB to speed up IO during training.**
+</details>
+
+<details>
+
+<summary><b>Generate LMDB</b></summary>
+
+We now generate LMDB to speed up IO during training.
 
 ```bash
 python create_lmdb_mfqev2.py --opt_path option_R3_mfqev2_4G.yml
@@ -138,17 +156,27 @@ Finally, the MFQEv2 dataset root will be sym-linked to the folder `./data/` auto
 
 > So that we and programmes can access MFQEv2 dataset at `./data/` directly.
 
+</details>
+
 ## 2. Train
 
 See `script.sh`.
 
 ## 3. Test
 
-**Test After Training**
+Pretrained models can be found here: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA)
+
+<details>
+
+<summary><b>Test MFQEv2 dataset after training</b></summary>
 
 See `script.sh`.
 
-**Test Without Training**
+</details>
+
+<details>
+
+<summary><b>Test MFQEv2 dataset without training</b></summary>
 
 If you did not run `create_lmdb` for training, you should first sym-link MFQEv2 dataset to `./data/`.
 
@@ -157,9 +185,13 @@ mkdir data/
 ln -s /your/path/to/MFQEv2_dataset/ data/MFQEv2
 ```
 
-Download the pre-trained model: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf)
+Download the pre-trained model, and see `script.sh`.
 
-**Simply Test One Video**
+</details>
+
+<details>
+
+<summary><b>Test your own video</b></summary>
 
 First download the pre-trained model, and then run:
 
@@ -168,6 +200,8 @@ CUDA_VISIBLE_DEVICES=0 python test_one_video.py
 ```
 
 See `test_one_video.py` for more details.
+
+</details>
 
 ## 4. Results
 
@@ -202,7 +236,9 @@ TOTAL TIME: [0.2] h
 
 ## 5. Q&A
 
-> Train and test on Vimeo-90K dataset.
+<details>
+
+<summary><b>Vimeo-90K dataset</b></summary>
 
 You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5. We also provide one-click programme at [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) (For Chinese researchers: [[百度网盘]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA), 提取码stdf).
 
@@ -218,11 +254,19 @@ Vimeo-90K/
 
 The LMDB preparation, option YAML, training and test codes have been already provided in this repository.
 
-> The epoch index starts from 0, while the iter index (also model index) starts from 1.
+</details>
 
-Small bug. I will fix it some time.
+<details>
 
-> How do we enlarge the dataset?
+<summary><b>The epoch index starts from 0, while the iter index (also model index) starts from 1</b></summary>
+
+Small bug. I may fix it some time.
+
+</details>
+
+<details>
+
+<summary><b>How do we enlarge the dataset</b></summary>
 
 Following BasicSR, we set `sampling index = target index % dataset len`.
 
@@ -230,9 +274,15 @@ For example, if we have a dataset which volume is 4 and enlargement ratio is 2, 
 
 Besides, the data loader will be shuffled at the start of each epoch. Enlarging epoch can help reduce the total starting times.
 
-> Why do we set the number of iteration but not epoch?
+</details>
+
+<details>
+
+<summary><b>Why do we set the number of iteration, not epoch</b></summary>
 
 Considering that we can enlarge the dataset with various ratio, the number of epoch is meaningless. In the meanwhile, the number of iteration indicates the number of sampling batches, which is more meaningful to us.
+
+</details>
 
 ## 6. License & Citation
 
