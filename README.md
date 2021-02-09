@@ -15,9 +15,9 @@
 
 ## 0. Background
 
-PyTorch implementation of [[*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement*]](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
+PyTorch implementation of [*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement*](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
 
-- A **simple** yet **effective** video quality enhancement network.
+- A **simple** and **effective** video quality enhancement network.
 - Adopt **feature alignment** by multi-frame **deformable convolutions**, instead of motion estimation and motion compensation.
 
 **Notice**: The dataset and training method are different from those in the original paper.
@@ -26,16 +26,16 @@ PyTorch implementation of [[*Spatio-Temporal Deformable Convolution for Compress
 
 (Figure copyright: Jianing Deng)
 
-Feel free to contact: ryanxingql@gmail.com.
+Feel free to contact: <ryanxingql@gmail.com>.
 
 ## 1. Pre-request
 
 ### 1.1. Environment
 
-- Ubuntu 20.04/18.04
+- UBUNTU 20.04/18.04
 - CUDA 10.1
-- PyTorch 1.6
-- Packages: tqdm, lmdb, pyyaml, opencv-python, scikit-image
+- PYTORCH 1.6
+- packages: TQDM, LMDB, PYYAML, OPENCV-PYTHON, SCIKIT-IMAGE
 
 Suppose that you have installed CUDA 10.1, then:
 
@@ -63,23 +63,24 @@ bash build.sh
 python simple_check.py
 ```
 
-> The DCNv2 source files here is different from the [[open-sourced version]](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
+> The DCNv2 source files here is different from the [open-sourced version](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch) due to incompatibility. [[issue]](https://github.com/open-mmlab/mmediting/issues/84#issuecomment-644974315)
 
 ### 1.3. MFQEv2 dataset
 
 <details>
-
 <summary><b>Download the raw dataset</b></summary>
+<p>
 
 Download here: [[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0) [[百度网盘 (mfqe)]](https://pan.baidu.com/s/1oBZf75bFGRanLmQQLAg4Ew)
 
 > MFQEv2 dataset includes 108 lossless YUV sequences for training, and 18 test sequences recommended by ITU-T.
 
+</p>
 </details>
 
 <details>
-
 <summary><b>Compress sequences</b></summary>
+<p>
 
 We now compress both training and test sequences by HM16.5 at LDP mode, QP=37.
 
@@ -112,11 +113,12 @@ MFQEv2_dataset/
 └── README.md
 ```
 
+</p>
 </details>
 
 <details>
-
 <summary><b>Edit YML</b></summary>
+<p>
 
 We now edit `option_R3_mfqev2_4G.yml`.
 
@@ -124,11 +126,12 @@ Suppose the folder `MFQEv2_dataset/` is placed at `/raid/xql/datasets/MFQEv2_dat
 
 > `R3`: one of the network structures provided in the paper; `mfqev2`: MFQEv2 dataset will be adopted; `4G`: 4 GPUs will be used for the below training. Similarly, you can also edit `option_R3_mfqev2_1G.yml` and `option_R3_mfqev2_2G.yml` if needed.
 
+</p>
 </details>
 
 <details>
-
 <summary><b>Generate LMDB</b></summary>
+<p>
 
 We now generate LMDB to speed up IO during training.
 
@@ -156,6 +159,7 @@ Finally, the MFQEv2 dataset root will be sym-linked to the folder `./data/` auto
 
 > So that we and programmes can access MFQEv2 dataset at `./data/` directly.
 
+</p>
 </details>
 
 ## 2. Train
@@ -167,16 +171,17 @@ See `script.sh`.
 Pretrained models can be found here: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA)
 
 <details>
-
 <summary><b>Test MFQEv2 dataset after training</b></summary>
+<p>
 
 See `script.sh`.
 
+</p>
 </details>
 
 <details>
-
 <summary><b>Test MFQEv2 dataset without training</b></summary>
+<p>
 
 If you did not run `create_lmdb` for training, you should first sym-link MFQEv2 dataset to `./data/`.
 
@@ -187,11 +192,12 @@ ln -s /your/path/to/MFQEv2_dataset/ data/MFQEv2
 
 Download the pre-trained model, and see `script.sh`.
 
+</p>
 </details>
 
 <details>
-
 <summary><b>Test your own video</b></summary>
+<p>
 
 First download the pre-trained model, and then run:
 
@@ -201,6 +207,7 @@ CUDA_VISIBLE_DEVICES=0 python test_one_video.py
 
 See `test_one_video.py` for more details.
 
+</p>
 </details>
 
 ## 4. Results
@@ -237,8 +244,8 @@ TOTAL TIME: [0.2] h
 ## 5. Q&A
 
 <details>
-
 <summary><b>Vimeo-90K dataset</b></summary>
+<p>
 
 You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5. We also provide one-click programme at [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA).
 
@@ -254,19 +261,21 @@ Vimeo-90K/
 
 The LMDB preparation, option YAML, training and test codes have been already provided in this repository.
 
+</p>
 </details>
 
 <details>
-
 <summary><b>The epoch index starts from 0, while the iter index (also model index) starts from 1</b></summary>
+<p>
 
 Small bug. I may fix it some time.
 
+</p>
 </details>
 
 <details>
-
 <summary><b>How do we enlarge the dataset</b></summary>
+<p>
 
 Following BasicSR, we set `sampling index = target index % dataset len`.
 
@@ -274,14 +283,16 @@ For example, if we have a dataset which volume is 4 and enlargement ratio is 2, 
 
 Besides, the data loader will be shuffled at the start of each epoch. Enlarging epoch can help reduce the total starting times.
 
+</p>
 </details>
 
 <details>
-
 <summary><b>Why do we set the number of iteration, not epoch</b></summary>
+<p>
 
 Considering that we can enlarge the dataset with various ratio, the number of epoch is meaningless. In the meanwhile, the number of iteration indicates the number of sampling batches, which is more meaningful to us.
 
+</p>
 </details>
 
 ## 6. License & Citation
@@ -303,16 +314,16 @@ You can **use, redistribute, and adapt** the material for **non-commercial purpo
 Special thanks to:
 
 - Jianing Deng (邓家宁, the author of STDF): network structure and training details.
-- [[BasicSR]](https://github.com/xinntao/BasicSR): useful tools and functions.
+- [BasicSR](https://github.com/xinntao/BasicSR): useful tools and functions.
 
 ## 7. See more
 
-- [[MFQEv2 (TPAMI 2019)]](https://github.com/RyanXingQL/MFQEv2.0)
+- [MFQEv2 (TPAMI 2019)](https://github.com/RyanXingQL/MFQEv2.0)
   - The first **multi-frame** quality enhancement approach for compressed videos.
   - The first to consider and utilize the **quality fluctuation** feature of compressed videos.
   - Enhance low-quality frames using **neighboring high-quality** frames.
 
-- [[RBQE (ECCV 2020)]](https://github.com/RyanXingQL/RBQE)
+- [RBQE (ECCV 2020)](https://github.com/RyanXingQL/RBQE)
   - A **single blind** enhancement model for HEVC/JPEG-compressed images with a **wide range** of Quantization Parameters (QPs) or Quality Factors (QFs).
   - A **multi-output dynamic** network with **early-exit** mechanism for easy input.
   - A **Tchebichef-moments** based **NR-IQA** approach for early-exit decision. This IQA approach is highly interpretable and sensitive to blocking energy detection.
