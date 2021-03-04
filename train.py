@@ -195,6 +195,30 @@ def main():
     if opts_dict['train']['is_dist']:
         model = DDP(model, device_ids=[rank])
 
+    """
+    # load pre-trained generator
+    ckp_path = opts_dict['network']['stdf']['load_path']
+    checkpoint = torch.load(ckp_path)
+    state_dict = checkpoint['state_dict']
+    if ('module.' in list(state_dict.keys())[0]) and (not opts_dict['train']['is_dist']):  # multi-gpu pre-trained -> single-gpu training
+        new_state_dict = OrderedDict()
+        for k, v in state_dict.items():
+            name = k[7:]  # remove module
+            new_state_dict[name] = v
+        model.load_state_dict(new_state_dict)
+        print(f'loaded from {ckp_path}')
+    elif ('module.' not in list(state_dict.keys())[0]) and (opts_dict['train']['is_dist']):  # single-gpu pre-trained -> multi-gpu training
+        new_state_dict = OrderedDict()
+        for k, v in state_dict.items():
+            name = 'module.' + k  # add module
+            new_state_dict[name] = v
+        model.load_state_dict(new_state_dict)
+        print(f'loaded from {ckp_path}')
+    else:  # the same way of training
+        model.load_state_dict(state_dict)
+        print(f'loaded from {ckp_path}')
+    """
+
     # ==========
     # define loss func & optimizer & scheduler & scheduler & criterion
     # ==========
@@ -228,30 +252,7 @@ def main():
         'PSNR', "Not implemented."
     criterion = utils.PSNR()
 
-    # ==========
-    # TO-DO: resume training & load pre-trained model
-    # ==========
-
-    """
-    filename = 'ckp_xxx.pth'
-    print("=> loading checkpoint '{}'".format(filename))
-    checkpoint = torch.load(filename)
-
-    start_iter = checkpoint['num_iter_accum']
-    optimizer.load_state_dict(checkpoint['optimizer'])
-    if opts_dict['train']['scheduler']['is_on']:
-        scheduler.load_state_dict(checkpoint['scheduler'])
-    
-    new_state_dict = OrderedDict()
-    for k, v in checkpoint['state_dict'].items():
-        name = k[7:]  # remove `module.`
-        new_state_dict[name] = v
-    model.load_state_dict(new_state_dict)
-    model = DDP(model, device_ids=[rank])
-
-    print("=> loaded checkpoint '{}' (epoch {})"
-                .format(filename, checkpoint['epoch']))
-    """
+    #
 
     start_iter = 0  # should be restored
     start_epoch = start_iter // num_iter_per_epoch
