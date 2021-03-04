@@ -167,8 +167,9 @@ class MFVQE(nn.Module):
 
         self.radius = opts_dict['radius']
         self.input_len = 2 * self.radius + 1
+        self.in_nc = opts_dict['stdf']['in_nc']
         self.ffnet = STDF(
-            in_nc=opts_dict['stdf']['in_nc'] * self.input_len, 
+            in_nc= self.in_nc * self.input_len, 
             out_nc=opts_dict['stdf']['out_nc'], 
             nf=opts_dict['stdf']['nf'], 
             nb=opts_dict['stdf']['nb'], 
@@ -184,5 +185,7 @@ class MFVQE(nn.Module):
     def forward(self, x):
         out = self.ffnet(x)
         out = self.qenet(out)
-        out += x[:, self.radius: self.radius+1, ...]  # res: add middle frame
+        # e.g., B C=[B1 B2 B3 R1 R2 R3 G1 G2 G3] H W, B C=[Y1 Y2 Y3] H W or B C=[B1 ... B7 R1 ... R7 G1 ... G7] H W
+        frm_lst = [self.radius + idx_c * self.input_len for idx_c in range(self.in_nc)]
+        out += x[:, frm_lst, ...]  # res: add middle frame
         return out
