@@ -168,7 +168,7 @@ See `script.sh`.
 
 ## 3. Test
 
-Pretrained models can be found here: [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA)
+Pretrained models can be found here: [[Releases]](https://github.com/RyanXingQL/STDF-PyTorch/releases) and [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA)
 
 <details>
 <summary><b>Test MFQEv2 dataset after training</b></summary>
@@ -247,7 +247,9 @@ TOTAL TIME: [0.2] h
 <summary><b>Vimeo-90K dataset</b></summary>
 <p>
 
-You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5. We also provide one-click programme at [[Google Drive]](https://drive.google.com/drive/folders/17gTXSnyiDp12wcGH_qtekLtBBU9s_WGM?usp=sharing) [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA).
+You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5.
+
+We also provide one-click programme at [[Releases]](https://github.com/RyanXingQL/STDF-PyTorch/releases) and [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA).
 
 ```tex
 Vimeo-90K/
