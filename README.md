@@ -68,50 +68,10 @@ python simple_check.py
 ### 1.3. MFQEv2 dataset
 
 <details>
-<summary><b>Download the raw dataset</b></summary>
+<summary><b>Download and compress videos</b></summary>
 <p>
 
-Download here: [[DropBox]](https://www.dropbox.com/sh/d04222pwk36n05b/AAC9SJ1QypPt79MVUZMosLk5a?dl=0) [[百度网盘 (mfqe)]](https://pan.baidu.com/s/1oBZf75bFGRanLmQQLAg4Ew)
-
-> MFQEv2 dataset includes 108 lossless YUV sequences for training, and 18 test sequences recommended by ITU-T.
-
-</p>
-</details>
-
-<details>
-<summary><b>Compress sequences</b></summary>
-<p>
-
-We now compress both training and test sequences by HM16.5 at LDP mode, QP=37.
-
-We have also provided the video compression toolbox in the dataset link.
-
-First edit `option.yml` in `video_compression/`, i.e., `dir_dataset` and `qp`.
-
-Then run:
-
-```bash
-cd video_compression/
-chmod +x TAppEncoderStatic
-python unzip_n_compress.py
-```
-
-Finally, we will get:
-
-```tex
-MFQEv2_dataset/
-├── train_108/
-│   ├── raw/
-│   └── HM16.5_LDP/
-│       └── QP37/
-├── test_18/
-│   ├── raw/
-│   └── HM16.5_LDP/
-│       └── QP37/
-├── video_compression/
-│   └── ...
-└── README.md
-```
+Please refer to [this repository](https://gist.github.com/RyanXingQL/db0b67abb771f02ad9d6c6536eec971e).
 
 </p>
 </details>
