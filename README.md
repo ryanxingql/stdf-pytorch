@@ -262,7 +262,7 @@ Considering that we can enlarge the dataset with various ratio, the number of ep
 You can **use, redistribute, and adapt** the material for **non-commercial purposes**, as long as you give appropriate credit by **citing the following paper** and **indicating any changes** that you've made.
 
 ```tex
-@inproceedings{STDF,
+@inproceedings{STDF_deng_2020,
   title={Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement},
   author={Deng, Jianing and Wang, Li and Pu, Shiliang and Zhuo, Cheng},
   booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
@@ -270,6 +270,18 @@ You can **use, redistribute, and adapt** the material for **non-commercial purpo
   number={07},
   pages={10696--10703},
   year={2020}
+}
+```
+
+If you find this repository helpful, you may cite:
+
+```tex
+@misc{STDF_xing_2020,
+  author = {Qunliang Xing},
+  title = {PyTorch implementation of STDF},
+  howpublished = "\url{https://github.com/RyanXingQL/STDF-PyTorch}",
+  year = {2020}, 
+  note = "[Online; accessed 11-April-2021]"
 }
 ```
 
