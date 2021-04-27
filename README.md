@@ -13,6 +13,8 @@
   - [6. License & Citation](#6-license--citation)
   - [7. See more](#7-see-more)
 
+**Update** (21/4/27): We open-source most compared approaches at [PowerQE](https://github.com/RyanXingQL/PowerQE). STDF will also be re-implemented and open-sourced soon.
+
 ## 0. Background
 
 PyTorch implementation of [*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement*](https://www.aiide.org/ojs/index.php/AAAI/article/view/6697) (AAAI 2020).
