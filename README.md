@@ -11,9 +11,8 @@
   - [4. Results](#4-results)
   - [5. Q&A](#5-qa)
   - [6. License & Citation](#6-license--citation)
-  - [7. See more](#7-see-more)
 
-**Update** (21/4/27): We open-source most compared approaches at [PowerQE](https://github.com/RyanXingQL/PowerQE). STDF will also be re-implemented and open-sourced soon.
+:rocket: **Update** (21/4/27): We open-source some commonly-used compared approaches at [PowerQE](https://github.com/RyanXingQL/PowerQE). STDF will also be re-implemented and open-sourced soon.
 
 ## 0. Background
 
@@ -291,15 +290,3 @@ Special thanks to:
 
 - Jianing Deng (邓家宁, the author of STDF): network structure and training details.
 - [BasicSR](https://github.com/xinntao/BasicSR): useful tools and functions.
-
-## 7. See more
-
-- [MFQEv2 (TPAMI 2019)](https://github.com/RyanXingQL/MFQEv2.0)
-  - The first **multi-frame** quality enhancement approach for compressed videos.
-  - The first to consider and utilize the **quality fluctuation** feature of compressed videos.
-  - Enhance low-quality frames using **neighboring high-quality** frames.
-
-- [RBQE (ECCV 2020)](https://github.com/RyanXingQL/RBQE)
-  - A **single blind** enhancement model for HEVC/JPEG-compressed images with a **wide range** of Quantization Parameters (QPs) or Quality Factors (QFs).
-  - A **multi-output dynamic** network with **early-exit** mechanism for easy input.
-  - A **Tchebichef-moments** based **NR-IQA** approach for early-exit decision. This IQA approach is highly interpretable and sensitive to blocking energy detection.
