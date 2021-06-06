@@ -72,7 +72,7 @@ python simple_check.py
 <summary><b>Download and compress videos</b></summary>
 <p>
 
-Please refer to [this repository](https://gist.github.com/RyanXingQL/db0b67abb771f02ad9d6c6536eec971e).
+Please check [here](https://github.com/RyanXingQL/MFQEv2.0/wiki/MFQEv2-Dataset).
 
 </p>
 </details>
