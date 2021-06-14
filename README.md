@@ -1,17 +1,5 @@
 # *Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement* (AAAI 2020)
 
-- [*Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement* (AAAI 2020)](#spatio-temporal-deformable-convolution-for-compressed-video-quality-enhancement-aaai-2020)
-  - [0. Background](#0-background)
-  - [1. Pre-request](#1-pre-request)
-    - [1.1. Environment](#11-environment)
-    - [1.2. DCNv2](#12-dcnv2)
-    - [1.3. MFQEv2 dataset](#13-mfqev2-dataset)
-  - [2. Train](#2-train)
-  - [3. Test](#3-test)
-  - [4. Results](#4-results)
-  - [5. Q&A](#5-qa)
-  - [6. License & Citation](#6-license--citation)
-
 :rocket: **Update** (21/4/27): We open-source some commonly-used compared approaches at [PowerQE](https://github.com/RyanXingQL/PowerQE). STDF will also be re-implemented and open-sourced soon.
 
 ## 0. Background
