@@ -21,32 +21,27 @@ Feel free to contact: <ryanxingql@gmail.com>.
 
 ### 1.1. Environment
 
-- UBUNTU 20.04/18.04
-- CUDA 10.1
-- PYTORCH 1.6
-- packages: TQDM, LMDB, PYYAML, OPENCV-PYTHON, SCIKIT-IMAGE
-
-Suppose that you have installed CUDA 10.1, then:
-
 ```bash
-git clone --depth=1 https://github.com/RyanXingQL/STDF-PyTorch 
-cd STDF-PyTorch/
-conda create -n stdf python=3.7 -y
-conda activate stdf
+conda create -n stdf python=3.7 -y && conda activate stdf
+
+git clone --depth=1 https://github.com/RyanXingQL/STDF-PyTorch && cd STDF-PyTorch/
+
+# given CUDA 10.1
 python -m pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+
 python -m pip install tqdm lmdb pyyaml opencv-python scikit-image
 ```
 
 ### 1.2. DCNv2
 
-**Build DCNv2.**
+#### Build DCNv2
 
 ```bash
 cd ops/dcn/
 bash build.sh
 ```
 
-**(Optional) Check if DCNv2 works.**
+#### Check if DCNv2 works (optional)
 
 ```bash
 python simple_check.py
@@ -56,18 +51,11 @@ python simple_check.py
 
 ### 1.3. MFQEv2 dataset
 
-<details>
-<summary><b>Download and compress videos</b></summary>
-<p>
+#### Download and compress videos
 
 Please check [here](https://github.com/RyanXingQL/MFQEv2.0/wiki/MFQEv2-Dataset).
 
-</p>
-</details>
-
-<details>
-<summary><b>Edit YML</b></summary>
-<p>
+#### Edit YML
 
 We now edit `option_R3_mfqev2_4G.yml`.
 
@@ -75,12 +63,7 @@ Suppose the folder `MFQEv2_dataset/` is placed at `/raid/xql/datasets/MFQEv2_dat
 
 > `R3`: one of the network structures provided in the paper; `mfqev2`: MFQEv2 dataset will be adopted; `4G`: 4 GPUs will be used for the below training. Similarly, you can also edit `option_R3_mfqev2_1G.yml` and `option_R3_mfqev2_2G.yml` if needed.
 
-</p>
-</details>
-
-<details>
-<summary><b>Generate LMDB</b></summary>
-<p>
+#### Generate LMDB
 
 We now generate LMDB to speed up IO during training.
 
@@ -90,7 +73,7 @@ python create_lmdb_mfqev2.py --opt_path option_R3_mfqev2_4G.yml
 
 Now you will get all needed data:
 
-```tex
+```txt
 MFQEv2_dataset/
 ├── train_108/
 │   ├── raw/
@@ -108,9 +91,6 @@ Finally, the MFQEv2 dataset root will be sym-linked to the folder `./data/` auto
 
 > So that we and programmes can access MFQEv2 dataset at `./data/` directly.
 
-</p>
-</details>
-
 ## 2. Train
 
 See `script.sh`.
@@ -119,18 +99,11 @@ See `script.sh`.
 
 Pretrained models can be found here: [[Releases]](https://github.com/RyanXingQL/STDF-PyTorch/releases) and [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA)
 
-<details>
-<summary><b>Test MFQEv2 dataset after training</b></summary>
-<p>
+### 3.1. Test MFQEv2 dataset after training
 
 See `script.sh`.
 
-</p>
-</details>
-
-<details>
-<summary><b>Test MFQEv2 dataset without training</b></summary>
-<p>
+### 3.2. Test MFQEv2 dataset without training
 
 If you did not run `create_lmdb` for training, you should first sym-link MFQEv2 dataset to `./data/`.
 
@@ -141,12 +114,7 @@ ln -s /your/path/to/MFQEv2_dataset/ data/MFQEv2
 
 Download the pre-trained model, and see `script.sh`.
 
-</p>
-</details>
-
-<details>
-<summary><b>Test your own video</b></summary>
-<p>
+### 3.3. Test your own video
 
 First download the pre-trained model, and then run:
 
@@ -156,10 +124,7 @@ CUDA_VISIBLE_DEVICES=0 python test_one_video.py
 
 See `test_one_video.py` for more details.
 
-</p>
-</details>
-
-## 4. Results
+## 4. Result
 
 ```log
 loading model exp/MFQEv2_R3_enlarge300x/ckp_290000.pt...
@@ -192,9 +157,7 @@ TOTAL TIME: [0.2] h
 
 ## 5. Q&A
 
-<details>
-<summary><b>Vimeo-90K dataset</b></summary>
-<p>
+### 5.1. Vimeo-90K dataset
 
 You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5.
 
@@ -212,21 +175,11 @@ Vimeo-90K/
 
 The LMDB preparation, option YAML, training and test codes have been already provided in this repository.
 
-</p>
-</details>
-
-<details>
-<summary><b>The epoch index starts from 0, while the iter index (also model index) starts from 1</b></summary>
-<p>
+### 5.2. Why the epoch index starts from 0, while the iter index (also model index) starts from 1
 
 Small bug. I may fix it some time.
 
-</p>
-</details>
-
-<details>
-<summary><b>How do we enlarge the dataset</b></summary>
-<p>
+### 5.3. How do we enlarge the dataset
 
 Following BasicSR, we set `sampling index = target index % dataset len`.
 
@@ -234,21 +187,15 @@ For example, if we have a dataset which volume is 4 and enlargement ratio is 2, 
 
 Besides, the data loader will be shuffled at the start of each epoch. Enlarging epoch can help reduce the total starting times.
 
-</p>
-</details>
-
-<details>
-<summary><b>Why do we set the number of iteration, not epoch</b></summary>
-<p>
+### 5.4. Why do we set the number of iteration, not epoch
 
 Considering that we can enlarge the dataset with various ratio, the number of epoch is meaningless. In the meanwhile, the number of iteration indicates the number of sampling batches, which is more meaningful to us.
 
-</p>
-</details>
+## 6. License
 
-## 6. License & Citation
+We adopt Apache License v2.0. For other licenses, please refer to [BasicSR](https://github.com/xinntao/BasicSR/tree/master/LICENSE) and [DCNv2](https://github.com/chengdazhi/Deformable-Convolution-V2-PyTorch/blob/master/LICENSE).
 
-You can **use, redistribute, and adapt** the material for **non-commercial purposes**, as long as you give appropriate credit by **citing the following paper** and **indicating any changes** that you've made.
+If you find this repository helpful, you may cite:
 
 ```tex
 @inproceedings{STDF_deng_2020,
@@ -260,11 +207,7 @@ You can **use, redistribute, and adapt** the material for **non-commercial purpo
   pages={10696--10703},
   year={2020}
 }
-```
 
-If you find this repository helpful, you may cite:
-
-```tex
 @misc{STDF_xing_2020,
   author = {Qunliang Xing},
   title = {PyTorch implementation of STDF},
@@ -274,7 +217,4 @@ If you find this repository helpful, you may cite:
 }
 ```
 
-Special thanks to:
-
-- Jianing Deng (邓家宁, the author of STDF): network structure and training details.
-- [BasicSR](https://github.com/xinntao/BasicSR): useful tools and functions.
+Special thanks to Jianing Deng (邓家宁, the author of STDF) for network structure and training details.
