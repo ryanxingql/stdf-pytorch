@@ -1,4 +1,10 @@
 __pycache__
-data/
-exp/
-model/
+
+.vscode/
+.idea/
+
+*.so
+
+/data/
+/exp/
+/model/
