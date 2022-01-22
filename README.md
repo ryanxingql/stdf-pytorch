@@ -1,6 +1,6 @@
 # *Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement* (AAAI 2020)
 
-:rocket: **Update** (21/4/27): We open-source some commonly-used compared approaches at [PowerQE](https://github.com/ryanxingql/powerqe). STDF will also be re-implemented and open-sourced soon.
+:rocket: **Update** (21/4/27): We open-source some commonly-used compared approaches at [PowerQE](https://github.com/ryanxingql/powerqe).
 
 ## 0. Background
 
