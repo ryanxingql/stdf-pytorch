@@ -1,6 +1,6 @@
 # *Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement* (AAAI 2020)
 
-:rocket: **Update** (21/4/27): We open-source some commonly-used compared approaches at [PowerQE](https://github.com/RyanXingQL/PowerQE). STDF will also be re-implemented and open-sourced soon.
+:rocket: **Update** (21/4/27): We open-source some commonly-used compared approaches at [PowerQE](https://github.com/ryanxingql/powerqe). STDF will also be re-implemented and open-sourced soon.
 
 ## 0. Background
 
@@ -24,7 +24,7 @@ Feel free to contact: <ryanxingql@gmail.com>.
 ```bash
 conda create -n stdf python=3.7 -y && conda activate stdf
 
-git clone --depth=1 https://github.com/RyanXingQL/STDF-PyTorch && cd STDF-PyTorch/
+git clone --depth=1 https://github.com/ryanxingql/stdf-pytorch && cd stdf-pytorch/
 
 # given CUDA 10.1
 python -m pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
@@ -53,7 +53,7 @@ python simple_check.py
 
 #### Download and compress videos
 
-Please check [here](https://github.com/RyanXingQL/MFQEv2.0/wiki/MFQEv2-Dataset).
+Please check [here](https://github.com/ryanxingql/mfqev2.0/wiki/MFQEv2-Dataset).
 
 #### Edit YML
 
@@ -97,7 +97,7 @@ See `script.sh`.
 
 ## 3. Test
 
-Pretrained models can be found here: [[Releases]](https://github.com/RyanXingQL/STDF-PyTorch/releases) and [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA)
+Pretrained models can be found here: [[Releases]](https://github.com/ryanxingql/stdf-pytorch/releases) and [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA)
 
 ### 3.1. Test MFQEv2 dataset after training
 
@@ -161,7 +161,7 @@ TOTAL TIME: [0.2] h
 
 You should download the Vimeo-90K dataset, convert these PNG sequences into 7-frame YCbCr YUV444P videos, then compress these videos under QP37, All Intra, HM16.5.
 
-We also provide one-click programme at [[Releases]](https://github.com/RyanXingQL/STDF-PyTorch/releases) and [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA).
+We also provide one-click programme at [[Releases]](https://github.com/ryanxingql/stdf-pytorch/releases) and [[百度网盘 (stdf)]](https://pan.baidu.com/s/1I-c95lJYLNmIQALzqelWYA).
 
 ```tex
 Vimeo-90K/
@@ -211,7 +211,7 @@ If you find this repository helpful, you may cite:
 @misc{2020xing2,
   author = {Qunliang Xing},
   title = {PyTorch implementation of STDF},
-  howpublished = "\url{https://github.com/RyanXingQL/STDF-PyTorch}",
+  howpublished = "\url{https://github.com/ryanxingql/stdf-pytorch}",
   year = {2020}, 
   note = "[Online; accessed 11-April-2021]"
 }
