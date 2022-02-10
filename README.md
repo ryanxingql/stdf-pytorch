@@ -198,7 +198,7 @@ We adopt Apache License v2.0. For other licenses, please refer to [BasicSR](http
 If you find this repository helpful, you may cite:
 
 ```tex
-@inproceedings{2020deng,
+@inproceedings{2020deng_stdf,
   title={Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement},
   author={Deng, Jianing and Wang, Li and Pu, Shiliang and Zhuo, Cheng},
   booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
@@ -208,12 +208,13 @@ If you find this repository helpful, you may cite:
   year={2020}
 }
 
-@misc{2020xing2,
-  author = {Qunliang Xing},
-  title = {PyTorch implementation of STDF},
-  howpublished = "\url{https://github.com/ryanxingql/stdf-pytorch}",
-  year = {2020}, 
-  note = "[Online; accessed 11-April-2021]"
+@software{2020xing_stdf,
+  author = {Xing, Qunliang and Deng, Jianing},
+  month = {9},
+  title = {{PyTorch implementation of STDF}},
+  url = {https://github.com/ryanxingql/stdf-pytorch},
+  version = {1.0.0},
+  year = {2020}
 }
 ```
 
