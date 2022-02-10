@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Xing"
+  given-names: "Qunliang"
+  orcid: "https://orcid.org/0000-0002-3007-716X"
+- family-names: "Deng"
+  given-names: "Jianing"
+title: "PyTorch implementation of STDF"
+version: 1.0.0
+date-released: 2021-4-11
+url: "https://github.com/ryanxingql/stdf-pytorch"
