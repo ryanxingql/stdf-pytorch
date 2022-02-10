@@ -8,5 +8,5 @@ authors:
   given-names: "Jianing"
 title: "PyTorch implementation of STDF"
 version: 1.0.0
-date-released: 2021-4-11
+date-released: 2020-9-13
 url: "https://github.com/ryanxingql/stdf-pytorch"
