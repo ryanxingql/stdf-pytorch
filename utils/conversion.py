@@ -129,7 +129,7 @@ def ycbcr2rgb(ycbcr_img):
     In OpenCV, it implements a JPEG conversion. See more details in
     https://en.wikipedia.org/wiki/YCbCr#JPEG_conversion.
     """
-    rgb_img = skc.rgb2ycbcr(ycbcr_img)
+    rgb_img = skc.ycbcr2rgb(ycbcr_img)
     return rgb_img
 
 
