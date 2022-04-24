@@ -1,5 +1,7 @@
 # *Spatio-Temporal Deformable Convolution for Compressed Video Quality Enhancement* (AAAI 2020)
 
+:rocket: **Update** (22/4/24): We re-implement STDF based on MMEditing at [basicvqe-mmediting](https://github.com/ryanxingql/basicvqe-mmediting).
+
 :rocket: **Update** (21/4/27): We open-source some commonly-used compared approaches at [PowerQE](https://github.com/ryanxingql/powerqe).
 
 ## 0. Background
